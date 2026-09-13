@@ -23,6 +23,8 @@
   <img alt="Auth: OAuth 2.1 or Agent key" src="https://img.shields.io/badge/auth-OAuth%202.1%20%7C%20Agent%20key-2F6BFF">
   <img alt="Tools: 11" src="https://img.shields.io/badge/tools-11-2F6BFF">
   <a href="https://sensefold.app/docs/"><img alt="Docs" src="https://img.shields.io/badge/docs-sensefold.app%2Fdocs-071633"></a>
+  <a href="https://glama.ai/mcp/connectors/app.sensefold/sensefold"><img alt="Sensefold MCP connector on Glama" src="https://glama.ai/mcp/connectors/app.sensefold/sensefold/badges/score.svg"></a>
+  <a href="https://smithery.ai/servers/miles-oznc/sensefold"><img alt="Sensefold on Smithery" src="https://img.shields.io/badge/smithery-86%2F100-2F6BFF"></a>
 </p>
 
 Sensefold is a personal context: the articles, threads, videos, PDFs, notes,
@@ -35,7 +37,8 @@ vendor's memory.
 This repository is the public reference for the **Sensefold MCP server**. The
 server is hosted; there is nothing to run. What you find here:
 
-- [`server.json`](server.json) — the manifest published to the MCP registry
+- [`server.json`](server.json) — the manifest published to the [MCP registry](https://registry.modelcontextprotocol.io/v0.1/servers?search=app.sensefold%2Fsensefold) as `app.sensefold/sensefold`
+- Directory listings: [Glama](https://glama.ai/mcp/connectors/app.sensefold/sensefold) · [Smithery](https://smithery.ai/servers/miles-oznc/sensefold) · [mcp.so](https://mcp.so/servers/sensefold) · [mcpservers.org](https://mcpservers.org/servers/sensefold-mcp)
 - Client configuration for every supported client, below
 - The tool contract, permission tiers, and reliability rules
 - [`examples/`](examples/) — worked sessions showing how an agent should use it
