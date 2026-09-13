@@ -1,0 +1,24 @@
+{
+  "identifier": "sensefoldlabs-sensefold-mcp",
+  "name": "Sensefold",
+  "version": "1.0.0",
+  "author": "SenseFold Labs",
+  "authorUrl": "https://github.com/SenseFoldLabs",
+  "homepage": "https://sensefold.app/for-agents",
+  "cloudEndpoint": "https://api.sensefold.app/mcp",
+  "description": "Personal context for every AI: search, read, and write back to your private Markdown library of articles, threads, PDFs, notes, and captured ChatGPT/Claude/Gemini/Grok conversations. Remote server, OAuth 2.1 or revocable tiered Agent keys. Every agent edit is versioned and revertible.",
+  "tags": ["personal-context", "memory", "knowledge", "notes", "markdown", "oauth", "claude", "chatgpt", "cursor", "claude-code", "codex"],
+  "tools": [
+    { "name": "search_hub", "description": "Hybrid keyword + semantic search across the whole library; English, Chinese, or mixed queries. Filters: tags, provenance, date range.", "inputSchema": { "type": "object", "properties": { "query": { "type": "string" }, "tags": { "type": "array", "items": { "type": "string" } }, "limit": { "type": "integer" }, "provenance": { "type": "string" }, "start": { "type": "string" }, "end": { "type": "string" } }, "required": ["query"] } },
+    { "name": "list_items", "description": "Recent items, newest first, with optional date range, provenance, and literal keyword filters.", "inputSchema": { "type": "object", "properties": { "limit": { "type": "integer" }, "start": { "type": "string" }, "end": { "type": "string" }, "keyword": { "type": "string" }, "provenance": { "type": "string" } } } },
+    { "name": "get_item", "description": "Read one saved item by UUID as Markdown text, in windows or by matched section.", "inputSchema": { "type": "object", "properties": { "id": { "type": "string" }, "windowStart": { "type": "integer" }, "windowLength": { "type": "integer" }, "chunk": { "type": "integer" }, "chunkRadius": { "type": "integer" } }, "required": ["id"] } },
+    { "name": "get_quota", "description": "The user's plan, remaining AI credits, limits, and reset time.", "inputSchema": { "type": "object", "properties": {} } },
+    { "name": "save_link", "description": "Save an HTTP(S) URL; capture and enrichment run asynchronously. Idempotent by client-supplied UUID. Requires the edit tier.", "inputSchema": { "type": "object", "properties": { "id": { "type": "string" }, "url": { "type": "string" } }, "required": ["id", "url"] } },
+    { "name": "save_note", "description": "Save a plain-text or Markdown note, stored verbatim. Idempotent by client-supplied UUID. Requires the edit tier.", "inputSchema": { "type": "object", "properties": { "id": { "type": "string" }, "authoredContent": { "type": "string" }, "hubTitle": { "type": "string" } }, "required": ["id", "authoredContent"] } },
+    { "name": "update_note", "description": "Replace an item's user-authored text, optionally rename it. Requires expectedVersion; revision-backed and undoable. Edit tier.", "inputSchema": { "type": "object", "properties": { "id": { "type": "string" }, "authoredContent": { "type": "string" }, "hubTitle": { "type": "string" }, "expectedVersion": { "type": "integer" } }, "required": ["id", "authoredContent", "expectedVersion"] } },
+    { "name": "update_tags", "description": "Replace an item's full tag list (up to 20). Requires expectedVersion; revision-backed and undoable. Edit tier.", "inputSchema": { "type": "object", "properties": { "id": { "type": "string" }, "tags": { "type": "array", "items": { "type": "string" } }, "expectedVersion": { "type": "integer" } }, "required": ["id", "tags", "expectedVersion"] } },
+    { "name": "delete_item", "description": "Move an item to the recycle bin; the user can restore it. Requires expectedVersion. Full tier only.", "inputSchema": { "type": "object", "properties": { "id": { "type": "string" }, "expectedVersion": { "type": "integer" } }, "required": ["id", "expectedVersion"] } },
+    { "name": "search", "description": "Read-only alias following the ChatGPT connector contract; maps onto search_hub.", "inputSchema": { "type": "object", "properties": { "query": { "type": "string" } }, "required": ["query"] } },
+    { "name": "fetch", "description": "Read-only alias following the ChatGPT connector contract; maps onto get_item with metadata.next_id continuation.", "inputSchema": { "type": "object", "properties": { "id": { "type": "string" } }, "required": ["id"] } }
+  ]
+}
